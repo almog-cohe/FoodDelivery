@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
-export default function indexx() {
+export default function index() {
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Text>index</Text>
     </View>
   )
