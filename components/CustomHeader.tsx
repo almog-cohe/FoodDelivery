@@ -3,6 +3,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import BottomSheet from "./BottomSheet";
+import { useRef } from "react";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const SearchBar = () => (
   <View style={styles.searchContainer}>
@@ -21,17 +24,22 @@ const SearchBar = () => (
 );
 
 const CustomHeader = () => {
+  const bottomSheetRef = useRef<BottomSheetModal>(null)
+  const openModal = () => {
+    bottomSheetRef.current?.present()
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
+      <BottomSheet ref={bottomSheetRef} />
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={openModal}>
           <Image
             style={styles.bike}
             source={require("@/assets/images/bike.png")}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.titleContainer}>
+        <TouchableOpacity onPress={openModal} style={styles.titleContainer}>
           <Text style={styles.title}>Delivery • now</Text>
           <View style={styles.locationName}>
             <Text style={styles.subtitle}>London</Text>
